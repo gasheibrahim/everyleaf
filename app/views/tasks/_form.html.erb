@@ -36,11 +36,10 @@
     <%= form.label :content %>
     <%= form.text_area :content %>
   </div>
-
   <div class="field">
-    <%= form.label :priority %>
-    <%= form.text_field :priority %>
-  </div>
+   <%= form.label :priority %>
+   <%= form.select :priority, ['high', 'medium', 'low'] %>
+ </div>
 
   <!-- <div class="field">
     <%= form.label :user_id %>
