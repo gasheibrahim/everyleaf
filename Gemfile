@@ -36,3 +36,4 @@ group :development, :test do
   gem 'spring-commands-rspec'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'kaminari'

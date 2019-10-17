@@ -2,6 +2,10 @@
 <div class="main">
 <%= t('view.sample') %>
 <h1 style="text-align:"center;">Tasks</h1>
+<%= form_tag(tasks_path, method: :get) do %>
+ <%= text_field_tag :search, params[:search],placeholder:'search' %>
+ <%= submit_tag ' Search', name: nil %>
+<% end %>
 <table class="table">
   <thead style="background-color: #fb9224;">
     <tr>
@@ -34,4 +38,9 @@
   <% end %>
   </tbody>
 </table>
+<%= paginate @tasks %>
+<h3 class="sortby">Sort By:</h3>
+<%= link_to "name", tasks_path(sort_by: "name"),class:'btn btn-primary btn-sm' %>
+<%= link_to "end_date", tasks_path(sort_by: "end_date"),class:'btn btn-warning btn-sm' %>
+<%= link_to "priority", tasks_path(sort_by: "priority"),class:'btn btn-secondary btn-sm' %>
 </div>
