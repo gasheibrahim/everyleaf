@@ -5,7 +5,8 @@ class Task < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :content, presence: true
-  validates :priority , presence: true
+  validates :priority, presence:true
+  enum priority: [:low, :medium, :high]
   def self.search(search)
    if term
      where('name LIKE ?', "%#{search}%")
