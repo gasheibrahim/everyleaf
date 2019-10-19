@@ -20,3 +20,11 @@
 |               | priority      | string   |
 |               | start_date    | string   |
 |               | end_date      | string   |
+
+Deploying on Heroku Steps:
+install heroku in your CP
+creating account on heroku
+create application on heroku
+you do push on heroku
+check if the application is on heroku, and find logs
+finaly you run application on browse
