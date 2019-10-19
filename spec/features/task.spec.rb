@@ -4,12 +4,12 @@ require 'rails_helper'
 RSpec.feature "Task management function", type: :feature do
  # In scenario (alias of it), write the processing of the test for each item you want to check.
  scenario "Test task list" do
-   Task.create!(name: 'test_task_01', status: 'testtesttest', content: 'testtesttest', start_date: '10.2.2019', end_date: '10.2.2019')
-   Task.create!(name: 'samplesample', status: 'test_task_02', content: 'samplesample', start_date: '10.2.2019', end_date: '10.2.2019')
+   Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
+   Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed', priority: 'medium',start_date: '10.2.2019', end_date: '20.10.2019')
     visit tasks_path
    # Write a test that you expect to get wrong results
    expect(page).to have_content 'testtesttest'
-   expect(page).to have_content 'samplesample'
+   expect(page).to have_content 'testtesttest'
  end
  scenario "Test task creation" do
 # visit to new_task_path (transition to task registration page)
