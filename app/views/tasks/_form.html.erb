@@ -12,42 +12,40 @@
   <% end %>
 <center>
 <div class="main">
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :status %>
+      <%= form.text_field :status, class:"form-control" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :start_date %>
+      <%= form.date_select :start_date, class:"form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :end_date %>
+      <%= form.date_select :end_date, class:"form-control" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date %>
-  </div>
-
-  <div class="field">
+  <div class="form-group col-md-6">
     <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content, class:"form-control", id:"exampleFormControlTextarea1", rows:"3" %>
   </div>
-  <div class="field">
-   <%= form.label :priority %>
-   <%= form.select :priority, ['high', 'medium', 'low'] %>
- </div>
+  <div class="form-group col-md-6">
+    <%= form.label :priority %>
+    <%= form.text_field :priority, class:"form-control" %>
+  </div>
 
-  <!-- <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div> -->
-
+  <div class="form-group">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div> 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary" %>
   </div>
 </div>
 </center>
