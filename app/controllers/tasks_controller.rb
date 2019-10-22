@@ -4,12 +4,16 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = if params[:search]
-     Task.where('name LIKE ? or name LIKE ?', "%#{params[:search]}%","%#{params[:search]}%").page params[:page]
-     else
-       #@tasks = Task.all.order('created_at desc').page params[:page]
-       @tasks = Task.order_list(params[:sort_by]).page params[:page]
-     end
+   @tasks = if params[:search]
+     Task.where('status LIKE ? or name LIKE ?', "%#{params[:search]}%","%#{params[:search]}%").page params[:page]
+   elsif params[:search1]
+     Task.where('name LIKE ?', "%#{params[:search1]}%").page params[:page]
+   elsif params[:search2]
+     Task.where('status LIKE ?', "%#{params[:search2]}%").page params[:page]
+   else
+     #@tasks = Task.all.order('created_at desc').page params[:page]
+     @tasks = Task.order_list(params[:sort_by]).page params[:page]
+   end
  end
  def search
    @task =task.search(params[:search])
@@ -77,6 +81,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :status, :start_date, :end_date, :content, :priority, :search)
+      params.require(:task).permit(:name, :status, :start_date, :end_date, :content, :priority, :search, :search1, :search2, :user_id)
     end
 end

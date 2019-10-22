@@ -2,10 +2,18 @@
 <div class="main">
 <%= t('view.sample') %>
 <h1 style="text-align:"center;">Tasks</h1>
-<%= form_tag(tasks_path, method: :get) do %>
- <%= text_field_tag :search, params[:search],placeholder:'search' %>
- <%= submit_tag ' Search', name: nil %>
-<% end %>
+<%= form_tag(tasks_path, method: :get, class:"form-inline my-2 my-lg-0") do %>
+ <%= text_field_tag :search, params[:search], placeholder:'search by Name Or Status', class:"form-control mr-sm-2" %>
+ <%= submit_tag 'Search', class:"btn btn-outline-success my-2 my-sm-0", name: nil %>
+<% end %><br>
+<%= form_tag(tasks_path, method: :get, class:"form-inline my-2 my-lg-0") do %>
+ <%= text_field_tag :search1, params[:search1], placeholder:'search by Name', class:"form-control mr-sm-2" %>
+ <%= submit_tag 'Search', class:"btn btn-outline-primary my-2 my-sm-0", name: nil %>
+<% end %><br>
+<%= form_tag(tasks_path, method: :get, class:"form-inline my-2 my-lg-0") do %>
+ <%= text_field_tag :search2, params[:search2], placeholder:'search by Status', class:"form-control mr-sm-2" %>
+ <%= submit_tag 'Search', class:"btn btn-outline-danger my-2 my-sm-0", name: nil %>
+<% end %><br>
 <table class="table">
   <thead style="background-color: #fb9224;">
     <tr>

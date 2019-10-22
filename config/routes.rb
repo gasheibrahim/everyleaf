@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'tasks#new'
+  root 'users#new'
+  resources :sessions
   resources :tasks
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
