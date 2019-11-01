@@ -40,6 +40,11 @@
     <%= form.label :priority %>
     <%= form.text_field :priority, class:"form-control" %>
   </div>
+  <% if logged_in? %>
+  <div class="form-group col-md-6">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <% end %>
   <div class="actions">
     <%= form.submit class:"btn btn-primary" %>
   </div>
