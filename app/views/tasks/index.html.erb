@@ -14,6 +14,10 @@
  <%= text_field_tag :search2, params[:search2], placeholder:'search by Status', class:"form-control mr-sm-2" %>
  <%= submit_tag 'search by Status', class:"btn btn-outline-danger my-2 my-sm-0", name: nil %>
 <% end %><br>
+<%= form_tag(tasks_path, method: :get, class:"form-inline my-2 my-lg-0") do %>
+ <%= text_field_tag :search3, params[:search3], placeholder:'search by label', class:"form-control mr-sm-2" %>
+ <%= submit_tag 'search by label', class:"btn btn-outline-warning my-2 my-sm-0", name: nil %>
+<% end %><br>
 <table class="table">
   <thead style="background-color: #fb9224;">
     <tr>
@@ -24,6 +28,7 @@
       <th scope="col">End date</th>
       <th scope="col">Content</th>
       <th scope="col">Priority</th>
+      <th scope="col">Labels</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -37,6 +42,7 @@
       <td><%= task.end_date %></td>
       <td><%= task.content %></td>
       <td><%= task.priority %></td>
+      <td><%= task.labels.count %></td>
       <td>
         <%= link_to 'Show', task, class:"btn btn-outline-success my-2 my-sm-0" %>
         <%= link_to 'Edit', edit_task_path(task), class:"btn btn-outline-primary my-2 my-sm-0" %>

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  resources :labels
   root 'users#new'
   resources :sessions
   resources :tasks
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :admin do
+  	resources :users
+  end
 end

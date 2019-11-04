@@ -16,11 +16,12 @@
 </p>
 <p>
   <strong>Tasks created by this user:</strong>
-  <% @user.tasks do |task| %>
-  <%= @user.task.name %>
-  <%= @user.task.content %>
+  <% @user.tasks.each do |task| %><br>
+  <strong>Name:</strong><%= task.name %>
+  <strong>Content:</strong><%= task.content %>
   <% end %>
 </p>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+<%= link_to 'Edit', edit_admin_user_path(@user) %> |
+<%= link_to 'Back', admin_users_path %>
 </center>

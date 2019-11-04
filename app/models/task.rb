@@ -7,6 +7,8 @@ class Task < ApplicationRecord
   validates :end_date, presence: true
   validates :content, presence: true
   validates :priority, presence:true
+  has_many :tasks_labels, dependent: :destroy
+  has_many :labels, through: :tasks_labels
   def self.search(search)
    if term
      where('status LIKE ? or name', "%#{search}%")

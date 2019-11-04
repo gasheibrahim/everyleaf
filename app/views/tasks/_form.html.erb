@@ -45,6 +45,10 @@
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
   <% end %>
+  <% Label.all.each do |label| %>
+  <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+  <label style = "background-color: aquamarine; width: auto;" > <%= label.name %> </label>
+  <% end %>
   <div class="actions">
     <%= form.submit class:"btn btn-primary" %>
   </div>
