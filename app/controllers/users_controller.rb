@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :validate_admin_page, only: [:index]
   # GET /users
   # GET /users.json
   def index
@@ -54,11 +54,15 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    if @user.id == current_user.id
+     redirect_to admin_users_url, notice: "You can not delete signed in user"
+     @admins = User.admins
+   elsif @admins == 1
+     redirect_to admin_users_url, notice: "Atleast one admin must remain!"
+   else
+     @user.destroy
+     redirect_to admin_users_url, notice: 'User was successfully destroyed.'
+   end
   end
 
   private
@@ -69,6 +73,12 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:fullname, :email, :phonenumber, :password, :password_confirmation)
+      params.require(:user).permit(:fullname, :email, :phonenumber, :user_type, :password, :password_confirmation)
+    end
+
+    def validate_admin_page
+      unless current_user && current_user.user_type == 'admin'
+        redirect_to tasks_path, notice: 'only admin can access this page'
+      end
     end
 end
