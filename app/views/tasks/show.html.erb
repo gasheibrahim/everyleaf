@@ -29,6 +29,17 @@
   <strong>Priority:</strong>
   <%= @task.priority %>
 </p>
+<p>
+<p> <h2> Labels attached to this task</h2>
+<% @task.labels.each do |label| %>
+<ul style="text-decoration: none;">
+<li style="text-decoration: none;">
+<strong>Title:</strong><%= label.name + '       ' %> <br/>
+<strong>Content:</strong><%= label.content %>
+</li>
+</ul>
+<% end %>
+</p>
 <%= link_to 'Comfirm', tasks_path %> |
 <%= link_to 'back', edit_task_path(@task) %>
 </center>

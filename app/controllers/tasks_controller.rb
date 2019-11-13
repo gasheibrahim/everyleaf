@@ -10,8 +10,8 @@ class TasksController < ApplicationController
      Task.where('name LIKE ?', "%#{params[:search1]}%").page params[:page]
    elsif params[:search2]
      Task.where('status LIKE ?', "%#{params[:search2]}%").page params[:page]
-   elsif params[:labels]
-     Task.joins('labels.name LIKE ?', "%#{params[:search3]}%").page params[:page]
+   elsif params[:search3]
+     Task.joins(:labels).where('labels.name ILIKE ?', "%#{params[:search3]}%").page params[:page]
    else
      #@tasks = Task.all.order('created_at desc').page params[:page]
      @tasks = Task.order_list(params[:sort_by]).page params[:page]
@@ -29,6 +29,8 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @task.labels.build
+    @task.tasks_labels.build
   end
 
   # GET /tasks/1/edit
@@ -39,7 +41,6 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -83,6 +84,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :status, :start_date, :end_date, :content, :priority, :search, :search1, :search2, :search3, :user_id, label_ids:[])
+      params.require(:task).permit(:name, :status, :start_date, :end_date, :content, :priority, :search, :search1, :search2, :search3, :labels, :user_id, label_ids:[])
     end
 end
