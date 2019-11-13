@@ -9,13 +9,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div class="sidenav">
+    <!-- <div class="sidenav">
       <%= link_to 'Everyleaf', tasks_path %>
       <%= link_to 'New Task', new_task_path %>
       <%= link_to 'Admin', admin_users_path %>
       <%= link_to 'Label', labels_path %>
       <%= link_to 'General USer', users_path %>
-    </div>
+    </div> -->
     <div class="main">
       <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
